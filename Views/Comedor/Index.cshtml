@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Comedor Escolar";
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link href="~/css/styles.css" rel="stylesheet" />
+    <script>
+        function agregarMercaderia() {
+            var contenedor = document.getElementById("mercaderias");
+            var div = document.createElement("div");
+            div.innerHTML = `
+                <label for="tipoMercaderia">Tipo de mercadería:</label>
+                <input type="text" name="tipoMercaderia" required>
+                <label for="precioMercaderia">Precio de la mercadería:</label>
+                <input type="number" name="precioMercaderia" required step="0.01">
+                <button type="button" onclick="eliminarMercaderia(this)">Eliminar</button>
+                <br><br>
+            `;
+            contenedor.appendChild(div);
+        }
+
+        function eliminarMercaderia(boton) {
+            boton.parentElement.remove();
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Administración del Comedor Escolar</h1>
+        <form asp-action="CalcularGasto" method="post">
+            <div id="mercaderias">
+                <div>
+                    <label for="tipoMercaderia">Tipo de mercadería:</label>
+                    <input type="text" name="tipoMercaderia" required>
+                    <label for="precioMercaderia">Precio de la mercadería:</label>
+                    <input type="number" name="precioMercaderia" required step="0.01">
+                    <br><br>
+                </div>
+            </div>
+            <button type="button" onclick="agregarMercaderia()">Agregar Mercadería</button>
+            <br><br>
+
+            <label for="presupuesto">Presupuesto mensual:</label>
+            <input type="number" id="presupuesto" name="presupuesto" required>
+
+            <label for="cantidadChicos">Cantidad de chicos:</label>
+            <input type="number" id="cantidadChicos" name="cantidadChicos" required>
+
+            <button type="submit">Calcular</button>
+        </form>
+    </div>
+</body>
+</html>

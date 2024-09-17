@@ -1,0 +1,40 @@
+@{
+    ViewData["Title"] = "Resultado del Cálculo";
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link href="~/css/styles.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container">
+        <h1>Resultado del Cálculo</h1>
+        <h2>Mercaderías</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tipo de Mercadería</th>
+                    <th>Precio</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var mercaderia in ViewBag.Mercaderias)
+                {
+                    <tr>
+                        <td>@mercaderia.Item1</td> <!-- Cambiado de .tipo a .Item1 -->
+                        <td>$@mercaderia.Item2</td> <!-- Cambiado de .precio a .Item2 -->
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <p>Total de Mercaderías: $@ViewBag.TotalMercaderia</p>
+        <p>Presupuesto mensual: $@ViewBag.Presupuesto</p>
+        <p>Cantidad de chicos: @ViewBag.CantidadChicos</p>
+        <p>Gasto por chico: $@ViewBag.GastoPorChico</p>
+        <a href="/Comedor">Volver</a>
+    </div>
+</body>
+</html>
